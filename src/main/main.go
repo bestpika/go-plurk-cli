@@ -24,13 +24,14 @@ func init() {
 func main() {
 	// 認證
 	tok := plurkAuth(&c)
-	// 取得個人資料
+	// 取得使用者資料
 	opt := map[string]string{}
 	opt["include_plurks"] = "false"
 	ans, _ := callAPI(tok, "/APP/Profile/getOwnProfile", opt)
 	plurker := plurkerObj{} // 使用者
 	json.Unmarshal(ans, &plurker)
 	printObjIndent(plurker)
+	// TODO: 命令列功能
 }
 
 func plurkAuth(credPath *string) *oauth.Credentials {
